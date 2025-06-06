@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DreamChef - Cocina lo imposible, saborea tus sueños</title>
+    <title>DreamChef - Cook the impossible, taste your dreams.</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -152,27 +152,27 @@
             </svg>
             <div>
                 <h1 class="font-brand text-5xl md:text-6xl font-bold text-white">DreamChef</h1>
-                <p class="mt-1 text-lg text-slate-300">Cocina lo imposible, saborea tus sueños.</p>
+                <p class="mt-1 text-lg text-slate-300">Cook the impossible, taste your dreams.</p>
             </div>
         </header>
 
         <!-- Main App Section with Phone Mockup -->
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div class="text-content order-2 md:order-1">
-                <h2 class="font-brand text-3xl text-white mb-4">Transforma tus sueños en recetas.</h2>
+                <h2 class="font-brand text-3xl text-white mb-4">Turn your dreams into recipes.</h2>
                 <p class="text-slate-300 mb-6 text-lg">
-                    DreamChef es la primera app que convierte tus sueños más locos en recetas deliciosas. Solo cuéntale a la app qué soñaste y obtén una receta única. ¿Soñaste con un pastel flotante o un curry de arcoíris? ¡Ahora puedes cocinarlo!
+                    DreamChef is the first app that transforms your wildest dreams into real, delicious recipes. Just tell the app what you dreamt, and get a one-of-a-kind recipe. Dreamed of a floating cake or a rainbow curry? Now you can cook it!
                 </p>
                 <div id="app-card" class="card p-6">
-                    <h3 class="text-xl font-bold mb-4 text-white">¡Cuéntanos tu sueño!</h3>
-                    <textarea id="dream-input" class="w-full p-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out text-white" rows="4" placeholder="Ej: Soñé con una sopa de galaxias que brillaba en la oscuridad..."></textarea>
+                    <h3 class="text-xl font-bold mb-4 text-white">Tell us your dream!</h3>
+                    <textarea id="dream-input" class="w-full p-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out text-white" rows="4" placeholder="e.g. I dreamed of a galaxy soup that glowed in the dark..."></textarea>
                     
                     <div class="flex flex-col sm:flex-row items-center justify-between mt-6">
                         <button id="generate-btn" class="btn-primary w-full sm:w-auto font-bold py-3 px-6 shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-0.5 transition-all duration-150">
-                           Crear Mi Receta
+                           Create My Recipe
                         </button>
                         <div class="flex items-center mt-4 sm:mt-0">
-                            <span id="fantasy-label" class="mr-3 font-semibold text-slate-300">Modo Fantasía</span>
+                            <span id="fantasy-label" class="mr-3 font-semibold text-slate-300">Fantasy Mode</span>
                             <label class="switch">
                                 <input type="checkbox" id="fantasy-toggle">
                                 <span class="slider"></span>
@@ -191,12 +191,12 @@
                     <div id="recipe-container" class="h-full overflow-y-auto pt-8">
                          <div id="recipe-placeholder" class="text-center mt-12 px-4">
                             <div class="text-5xl mb-4">🎂</div>
-                            <h3 class="font-brand text-2xl text-white">Pastel de Levitación Esponjoso</h3>
-                            <p class="text-slate-400 mt-2">Tu próxima receta increíble aparecerá aquí...</p>
+                            <h3 class="font-brand text-2xl text-white">Fluffy Levitation Cake</h3>
+                            <p class="text-slate-400 mt-2">Your next amazing recipe will appear here...</p>
                         </div>
                         <div id="loader" class="hidden flex-col justify-center items-center my-8 h-full">
                             <div class="loader"></div>
-                            <p class="ml-4 text-lg font-semibold text-slate-400 mt-4">La IA está soñando tu receta...</p>
+                            <p class="ml-4 text-lg font-semibold text-slate-400 mt-4">The AI is dreaming up your recipe...</p>
                         </div>
                         <div id="recipe-card" class="hidden p-2">
                             <!-- Recipe content injected here -->
@@ -210,27 +210,27 @@
         <footer class="mt-16 pt-8 border-t border-slate-700 text-center">
             <div class="grid md:grid-cols-3 gap-8 items-center">
                 <div class="launch-info">
-                    <h3 class="font-bold text-lg text-white">Lanzamiento</h3>
-                    <p class="text-2xl font-brand text-yellow-400">15 de Julio, 2025</p>
+                    <h3 class="font-bold text-lg text-white">Launching</h3>
+                    <p class="text-2xl font-brand text-yellow-400">July 15, 2025</p>
                 </div>
                 <div class="pricing-info">
                      <h3 class="font-bold text-lg text-white">Turn your imagination into the next star dish!</h3>
                      <div class="flex justify-center items-baseline gap-4 mt-2">
-                        <p class="text-xl font-bold text-white">Gratis</p>
+                        <p class="text-xl font-bold text-white">Free</p>
                         <span class="text-slate-400">/</span>
-                        <p class="text-xl font-bold text-white">$3.49<span class="text-sm font-normal">/mes premium</span></p>
+                        <p class="text-xl font-bold text-white">$3.49<span class="text-sm font-normal">/month premium</span></p>
                      </div>
                 </div>
                  <div class="features-info">
-                     <h3 class="font-bold text-lg text-white">Características</h3>
-                     <p class="text-slate-400 text-sm">Lector de Sueños IA • Escáner de Cocina • Modo Fantasía • Comparte Mundialmente • Listo para Impresoras 3D</p>
+                     <h3 class="font-bold text-lg text-white">Features</h3>
+                     <p class="text-slate-400 text-sm">AI Dream Reader • Kitchen Scanner • Fantasy Mode • Share Worldwide • 3D Printer Ready</p>
                 </div>
             </div>
         </footer>
     </div>
 
     <div id="clipboard-message" class="fixed bottom-5 right-5 bg-green-600 text-white py-2 px-4 rounded-lg shadow-lg opacity-0 transition-opacity duration-300">
-        ¡Receta copiada!
+        Recipe copied!
     </div>
 
     <script>
@@ -281,7 +281,7 @@
         async function handleGenerateRecipe() {
             const dreamText = dreamInput.value.trim();
             if (!dreamText) {
-                showError("¡Primero describe tu sueño!");
+                showError("Please describe your dream first!");
                 return;
             }
             hideError();
@@ -312,7 +312,7 @@
                   }
                 };
 
-                const apiKey = ""; // Managed by environment
+                const apiKey = "AIzaSyDQ1BPYlW7HCzu1yiPHh6bpqUFPmxhRFLE";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
@@ -321,21 +321,21 @@
                     body: JSON.stringify(payload)
                 });
                 
-                if (!response.ok) throw new Error(`Error de API: ${response.statusText}`);
+                if (!response.ok) throw new Error(`API Error: ${response.statusText}`);
 
                 const result = await response.json();
                 
-                if (result.candidates && result.candidates.length > 0) {
+                if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts.length > 0) {
                     const text = result.candidates[0].content.parts[0].text;
                     const recipeData = JSON.parse(text);
                     displayRecipe(recipeData);
                 } else {
-                    throw new Error("La IA no pudo generar una receta. Intenta con otro sueño.");
+                     throw new Error("The AI couldn't generate a recipe. Check your API key or try another dream.");
                 }
 
             } catch (error) {
-                console.error("Error generando receta:", error);
-                showError(error.message || "Algo salió mal. Por favor, inténtalo de nuevo.");
+                console.error("Error generating recipe:", error);
+                showError(error.message || "Something went wrong. Please try again.");
                 loader.classList.add('hidden');
                 loader.classList.remove('flex');
                 recipePlaceholder.classList.remove('hidden');
@@ -358,7 +358,7 @@
             recipeCard.innerHTML = `
                 <div class="flex justify-between items-start">
                     <h2 class="font-brand text-2xl font-bold text-white pr-4">${name}</h2>
-                    <button id="copy-btn" title="Copiar al portapapeles" class="p-2 rounded-full hover:bg-slate-700 transition flex-shrink-0">
+                    <button id="copy-btn" title="Copy to Clipboard" class="p-2 rounded-full hover:bg-slate-700 transition flex-shrink-0">
                         <svg class="w-5 h-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                     </button>
                 </div>
@@ -366,11 +366,11 @@
                 
                 <div class="space-y-6">
                     <div>
-                        <h3 class="text-lg font-bold mb-2 border-b border-slate-700 pb-1 text-yellow-400">Ingredientes</h3>
+                        <h3 class="text-lg font-bold mb-2 border-b border-slate-700 pb-1 text-yellow-400">Ingredients</h3>
                         <ul class="space-y-1 text-slate-300">${ingredientsList}</ul>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold mb-2 border-b border-slate-700 pb-1 text-yellow-400">Instrucciones</h3>
+                        <h3 class="text-lg font-bold mb-2 border-b border-slate-700 pb-1 text-yellow-400">Instructions</h3>
                         <ol class="space-y-2 text-slate-300">${instructionsList}</ol>
                     </div>
                 </div>
@@ -381,7 +381,7 @@
             recipeCard.classList.remove('hidden');
 
             document.getElementById('copy-btn').addEventListener('click', () => {
-                const recipeText = `Receta de DreamChef: ${name}\n\n"${description}"\n\nIngredientes:\n${ingredients.join('\n')}\n\nInstrucciones:\n${instructions.map((step, i) => `${i + 1}. ${step}`).join('\n')}`.trim();
+                const recipeText = `DreamChef Recipe: ${name}\n\n"${description}"\n\nIngredients:\n${ingredients.join('\n')}\n\nInstructions:\n${instructions.map((step, i) => `${i + 1}. ${step}`).join('\n')}`.trim();
                 copyToClipboard(recipeText);
             });
         }
@@ -395,8 +395,8 @@
                 document.execCommand('copy');
                 showClipboardMessage();
             } catch (err) {
-                console.error('Fallo al copiar texto: ', err);
-                showError('No se pudo copiar la receta.');
+                console.error('Failed to copy text: ', err);
+                showError('Could not copy recipe.');
             }
             document.body.removeChild(textarea);
         }
