@@ -1,36 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DreamChef - Cook Your Imagination</title>
+    <title>DreamChef - Cocina lo imposible, saborea tus sueños</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
+            background: linear-gradient(180deg, #3a327e 0%, #2c2a4a 100%);
+            color: #e2e8f0; /* slate-200 */
+            overflow-x: hidden;
+            position: relative;
         }
         .font-brand {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
         }
         .card {
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease-in-out;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
         }
         .btn-primary {
-            background-color: #4f46e5; /* Indigo */
+            background-color: #3b82f6; /* A vibrant blue */
             color: white;
             transition: background-color 0.3s;
+            border-radius: 0.75rem;
         }
         .btn-primary:hover {
-            background-color: #4338ca;
+            background-color: #2563eb;
         }
         .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #4f46e5;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #f59e0b; /* Amber/Yellow for stars */
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -40,6 +48,34 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* Phone Mockup */
+        .phone-mockup {
+            background: #1e1b3a;
+            border-radius: 2.5rem;
+            padding: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4), inset 0 0 10px rgba(0,0,0,0.5);
+        }
+        .phone-screen {
+            background: linear-gradient(180deg, #3a327e 0%, #2c2a4a 100%);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .phone-notch {
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 20px;
+            background: #1e1b3a;
+            border-radius: 0 0 10px 10px;
+            z-index: 10;
+        }
+
         /* Fantasy Mode Toggle Switch */
         .switch {
           position: relative;
@@ -59,7 +95,7 @@
           left: 0;
           right: 0;
           bottom: 0;
-          background-color: #ccc;
+          background-color: rgba(0,0,0,0.3);
           -webkit-transition: .4s;
           transition: .4s;
           border-radius: 34px;
@@ -77,125 +113,124 @@
           border-radius: 50%;
         }
         input:checked + .slider {
-          background-color: #6d28d9; /* Purple for fantasy */
+          background-color: #8b5cf6; /* A nice purple for fantasy */
         }
         input:checked + .slider:before {
-          -webkit-transform: translateX(26px);
-          -ms-transform: translateX(26px);
           transform: translateX(26px);
+        }
+        /* Stars Background */
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #f59e0b;
+            border-radius: 50%;
+            animation: twinkle 5s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="min-h-screen">
 
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
+    <div id="star-container"></div>
+
+    <div class="container mx-auto px-4 py-8 max-w-5xl">
 
         <!-- Header -->
-        <header class="text-center mb-8">
-            <h1 class="font-brand text-5xl md:text-6xl font-bold text-gray-900">DreamChef</h1>
-            <p class="mt-2 text-lg text-gray-600">It's a special app that mixes food, dreams, and technology.</p>
+        <header class="text-center mb-12 flex items-center justify-center gap-4">
+            <!-- Simple SVG Logo -->
+            <svg class="w-16 h-16 text-blue-400" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="48" fill="#FFFFFF"/>
+                <circle cx="38" cy="45" r="5" fill="#2c2a4a"/>
+                <circle cx="62" cy="45" r="5" fill="#2c2a4a"/>
+                <path d="M35 65 Q50 75 65 65" stroke="#2c2a4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+                <path d="M25 40 Q50 10 75 40 C 70 20, 30 20, 25 40" fill="#FFFFFF"/>
+                 <path d="M25 40 Q50 10 75 40" stroke="#2c2a4a" stroke-width="4" fill="none"/>
+            </svg>
+            <div>
+                <h1 class="font-brand text-5xl md:text-6xl font-bold text-white">DreamChef</h1>
+                <p class="mt-1 text-lg text-slate-300">Cocina lo imposible, saborea tus sueños.</p>
+            </div>
         </header>
 
-        <!-- Main App Card -->
-        <div id="app-card" class="card p-6 md:p-8 mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Turn Your Dream into a Recipe!</h2>
-            <p class="mb-4 text-gray-600">Describe a dream you had. For example, "I dreamed of a floating chocolate cake surrounded by sparkling raspberry stars."</p>
-            
-            <textarea id="dream-input" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out" rows="5" placeholder="Tell us about your dream..."></textarea>
-            
-            <div class="flex flex-col sm:flex-row items-center justify-between mt-6">
-                <button id="generate-btn" class="btn-primary w-full sm:w-auto font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-150">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
-                    Create My Recipe
-                </button>
-                <div class="flex items-center mt-4 sm:mt-0">
-                    <span id="fantasy-label" class="mr-3 font-semibold text-gray-700">Fantasy Mode</span>
-                    <label class="switch">
-                        <input type="checkbox" id="fantasy-toggle">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-            </div>
-            <div id="error-message" class="text-red-500 mt-4 font-semibold hidden"></div>
-        </div>
-
-        <!-- Recipe Display -->
-        <div id="recipe-container" class="hidden">
-            <div id="loader" class="flex justify-center items-center my-8">
-                <div class="loader"></div>
-                <p class="ml-4 text-lg font-semibold text-gray-600">The AI is dreaming up your recipe...</p>
-            </div>
-            <div id="recipe-card" class="card p-6 md:p-8 hidden">
-                <!-- Recipe content will be injected here by JavaScript -->
-            </div>
-        </div>
-        
-        <!-- Features Section -->
-        <div class="card p-6 md:p-8 mb-8">
-            <h2 class="text-2xl font-brand font-bold mb-6 text-center">DreamChef has many cool features:</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="feature-item text-center p-4 bg-indigo-50 rounded-lg">
-                    <div class="text-3xl mb-2">🤖</div>
-                    <h3 class="font-semibold">AI Dream Reader</h3>
-                    <p class="text-sm text-gray-600">Uses AI to interpret your dream and generate a unique recipe.</p>
-                </div>
-                 <div class="feature-item text-center p-4 bg-green-50 rounded-lg">
-                    <div class="text-3xl mb-2">📸</div>
-                    <h3 class="font-semibold">Kitchen Scanner</h3>
-                    <p class="text-sm text-gray-600">Checks your pantry to see what ingredients you already have.</p>
-                </div>
-                <div class="feature-item text-center p-4 bg-purple-50 rounded-lg">
-                    <div class="text-3xl mb-2">✨</div>
-                    <h3 class="font-semibold">Fantasy Mode</h3>
-                    <p class="text-sm text-gray-600">For when you want truly wild and imaginative recipe ideas.</p>
-                </div>
-                <div class="feature-item text-center p-4 bg-blue-50 rounded-lg">
-                    <div class="text-3xl mb-2">🌍</div>
-                    <h3 class="font-semibold">Share Worldwide</h3>
-                    <p class="text-sm text-gray-600">Share your creations with a global community of dream chefs.</p>
-                </div>
-                <div class="feature-item text-center p-4 bg-pink-50 rounded-lg">
-                    <div class="text-3xl mb-2">🖨️</div>
-                    <h3 class="font-semibold">3D Food Printer Ready</h3>
-                    <p class="text-sm text-gray-600">Works with 3D food printers to bring your dreams to life.</p>
-                </div>
-                 <div class="feature-item text-center p-4 bg-yellow-50 rounded-lg">
-                    <div class="text-3xl mb-2">👨‍🍳</div>
-                    <h3 class="font-semibold">Fun for Everyone</h3>
-                    <p class="text-sm text-gray-600">Great for kids, families, and aspiring future chefs.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Benefits, Price & Launch -->
-        <div class="grid md:grid-cols-2 gap-8 text-center">
-            <div class="card p-8">
-                <h3 class="font-brand text-2xl font-bold mb-4">Pricing</h3>
-                <div class="space-y-4">
-                    <div>
-                        <h4 class="font-bold text-lg">Free Version</h4>
-                        <p class="text-gray-600">Get started with basic dream-to-recipe generation.</p>
+        <!-- Main App Section with Phone Mockup -->
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-content order-2 md:order-1">
+                <h2 class="font-brand text-3xl text-white mb-4">Transforma tus sueños en recetas.</h2>
+                <p class="text-slate-300 mb-6 text-lg">
+                    DreamChef es la primera app que convierte tus sueños más locos en recetas deliciosas. Solo cuéntale a la app qué soñaste y obtén una receta única. ¿Soñaste con un pastel flotante o un curry de arcoíris? ¡Ahora puedes cocinarlo!
+                </p>
+                <div id="app-card" class="card p-6">
+                    <h3 class="text-xl font-bold mb-4 text-white">¡Cuéntanos tu sueño!</h3>
+                    <textarea id="dream-input" class="w-full p-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out text-white" rows="4" placeholder="Ej: Soñé con una sopa de galaxias que brillaba en la oscuridad..."></textarea>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-between mt-6">
+                        <button id="generate-btn" class="btn-primary w-full sm:w-auto font-bold py-3 px-6 shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-0.5 transition-all duration-150">
+                           Crear Mi Receta
+                        </button>
+                        <div class="flex items-center mt-4 sm:mt-0">
+                            <span id="fantasy-label" class="mr-3 font-semibold text-slate-300">Modo Fantasía</span>
+                            <label class="switch">
+                                <input type="checkbox" id="fantasy-toggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
                     </div>
-                    <div class="p-4 bg-indigo-100 rounded-lg border-2 border-indigo-500">
-                        <h4 class="font-bold text-lg text-indigo-800">Premium Version</h4>
-                        <p class="text-3xl font-bold text-indigo-900 my-2">$3.49<span class="text-base font-normal">/month</span></p>
-                        <p class="text-indigo-700">Unlock Fantasy Mode, unlimited recipes, and more!</p>
+                    <div id="error-message" class="text-red-400 mt-4 font-semibold hidden"></div>
+                </div>
+            </div>
+
+            <!-- Phone mockup display -->
+            <div class="phone-mockup order-1 md:order-2">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <!-- Recipe Display Container -->
+                    <div id="recipe-container" class="h-full overflow-y-auto pt-8">
+                         <div id="recipe-placeholder" class="text-center mt-12 px-4">
+                            <div class="text-5xl mb-4">🎂</div>
+                            <h3 class="font-brand text-2xl text-white">Pastel de Levitación Esponjoso</h3>
+                            <p class="text-slate-400 mt-2">Tu próxima receta increíble aparecerá aquí...</p>
+                        </div>
+                        <div id="loader" class="hidden flex-col justify-center items-center my-8 h-full">
+                            <div class="loader"></div>
+                            <p class="ml-4 text-lg font-semibold text-slate-400 mt-4">La IA está soñando tu receta...</p>
+                        </div>
+                        <div id="recipe-card" class="hidden p-2">
+                            <!-- Recipe content injected here -->
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card p-8 flex flex-col justify-center items-center">
-                 <h3 class="font-brand text-2xl font-bold mb-4">Launch Date</h3>
-                 <p class="text-5xl font-bold text-gray-800">July 15</p>
-                 <p class="text-3xl font-semibold text-gray-600">2025</p>
-                 <p class="mt-4 text-lg font-semibold">Get ready to cook your imagination!</p>
-            </div>
         </div>
 
+        <!-- Bottom Info Section -->
+        <footer class="mt-16 pt-8 border-t border-slate-700 text-center">
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <div class="launch-info">
+                    <h3 class="font-bold text-lg text-white">Lanzamiento</h3>
+                    <p class="text-2xl font-brand text-yellow-400">15 de Julio, 2025</p>
+                </div>
+                <div class="pricing-info">
+                     <h3 class="font-bold text-lg text-white">Turn your imagination into the next star dish!</h3>
+                     <div class="flex justify-center items-baseline gap-4 mt-2">
+                        <p class="text-xl font-bold text-white">Gratis</p>
+                        <span class="text-slate-400">/</span>
+                        <p class="text-xl font-bold text-white">$3.49<span class="text-sm font-normal">/mes premium</span></p>
+                     </div>
+                </div>
+                 <div class="features-info">
+                     <h3 class="font-bold text-lg text-white">Características</h3>
+                     <p class="text-slate-400 text-sm">Lector de Sueños IA • Escáner de Cocina • Modo Fantasía • Comparte Mundialmente • Listo para Impresoras 3D</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- Clipboard message -->
-    <div id="clipboard-message" class="fixed bottom-5 right-5 bg-gray-900 text-white py-2 px-4 rounded-lg shadow-lg opacity-0 transition-opacity duration-300">
-        Recipe copied to clipboard!
+    <div id="clipboard-message" class="fixed bottom-5 right-5 bg-green-600 text-white py-2 px-4 rounded-lg shadow-lg opacity-0 transition-opacity duration-300">
+        ¡Receta copiada!
     </div>
 
     <script>
@@ -209,48 +244,57 @@
         const loader = document.getElementById('loader');
         const errorMessage = document.getElementById('error-message');
         const clipboardMessage = document.getElementById('clipboard-message');
+        const recipePlaceholder = document.getElementById('recipe-placeholder');
         
         // --- Event Listeners ---
         generateBtn.addEventListener('click', handleGenerateRecipe);
         fantasyToggle.addEventListener('change', updateFantasyLabel);
+        window.addEventListener('load', createStars);
 
         /**
-         * Updates the fantasy mode label style based on the toggle state.
+         * Creates twinkling stars in the background.
          */
+        function createStars() {
+            const container = document.getElementById('star-container');
+            const starCount = 100;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                star.style.animationDuration = `${2 + Math.random() * 3}s`;
+                container.appendChild(star);
+            }
+        }
+        
         function updateFantasyLabel() {
             if (fantasyToggle.checked) {
-                fantasyLabel.classList.add('text-purple-700');
-                fantasyLabel.classList.remove('text-gray-700');
+                fantasyLabel.classList.add('text-purple-400');
+                fantasyLabel.classList.remove('text-slate-300');
             } else {
-                fantasyLabel.classList.remove('text-purple-700');
-                fantasyLabel.classList.add('text-gray-700');
+                fantasyLabel.classList.remove('text-purple-400');
+                fantasyLabel.classList.add('text-slate-300');
             }
         }
 
-        /**
-         * Main function to handle the recipe generation process.
-         */
         async function handleGenerateRecipe() {
             const dreamText = dreamInput.value.trim();
             if (!dreamText) {
-                showError("Please describe your dream first!");
+                showError("¡Primero describe tu sueño!");
                 return;
             }
-
-            // --- Show loading state ---
             hideError();
-            recipeContainer.classList.remove('hidden');
+            recipePlaceholder.classList.add('hidden');
             loader.classList.remove('hidden');
+            loader.classList.add('flex'); // Make sure loader is flex
             recipeCard.classList.add('hidden');
 
             try {
-                // --- Construct the prompt for the Gemini API ---
                 const isFantasy = fantasyToggle.checked;
                 const prompt = buildPrompt(dreamText, isFantasy);
 
-                // --- Call the Gemini API ---
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
                 const payload = {
                   contents: chatHistory,
                   generationConfig: {
@@ -268,7 +312,7 @@
                   }
                 };
 
-                const apiKey = ""; // API key will be managed by the environment
+                const apiKey = ""; // Managed by environment
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
@@ -277,9 +321,7 @@
                     body: JSON.stringify(payload)
                 });
                 
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.statusText}`);
-                }
+                if (!response.ok) throw new Error(`Error de API: ${response.statusText}`);
 
                 const result = await response.json();
                 
@@ -288,22 +330,18 @@
                     const recipeData = JSON.parse(text);
                     displayRecipe(recipeData);
                 } else {
-                    throw new Error("The AI couldn't generate a recipe. Please try a different dream.");
+                    throw new Error("La IA no pudo generar una receta. Intenta con otro sueño.");
                 }
 
             } catch (error) {
-                console.error("Error generating recipe:", error);
-                showError(error.message || "Something went wrong. Please try again.");
+                console.error("Error generando receta:", error);
+                showError(error.message || "Algo salió mal. Por favor, inténtalo de nuevo.");
                 loader.classList.add('hidden');
+                loader.classList.remove('flex');
+                recipePlaceholder.classList.remove('hidden');
             }
         }
         
-        /**
-         * Builds the prompt string for the AI model.
-         * @param {string} dreamText - The user's dream description.
-         * @param {boolean} isFantasy - Whether fantasy mode is enabled.
-         * @returns {string} The formatted prompt.
-         */
         function buildPrompt(dreamText, isFantasy) {
              if (isFantasy) {
                 return `You are DreamChef, an AI that turns dreams into wild, fantastical recipes (Fantasy Mode is on!). A user had the following dream: "${dreamText}". Based on this dream, create an extremely imaginative, almost magical recipe that challenges the laws of cooking. The recipe must have a fantastical name, a short, imaginative description, a list of ingredients (some can be imaginary or metaphorical, like "a pinch of starlight" or "giggle-infused berries"), and step-by-step instructions. Your response MUST be a valid JSON object following the specified schema.`;
@@ -311,87 +349,58 @@
             return `You are DreamChef, an AI that turns dreams into real, creative recipes. A user had the following dream: "${dreamText}". Based on this dream, create a unique and creative recipe that is possible to make. The recipe must have a catchy name, a short, imaginative description, a list of real ingredients, and step-by-step instructions. Your response MUST be a valid JSON object following the specified schema.`;
         }
 
-        /**
-         * Displays the generated recipe on the page.
-         * @param {object} recipeData - The recipe object from the API.
-         */
         function displayRecipe(recipeData) {
             const { name, description, ingredients, instructions } = recipeData;
             
-            const ingredientsList = ingredients.map(item => `<li class="flex items-start"><span class="text-indigo-500 mr-2">◆</span>${item}</li>`).join('');
-            const instructionsList = instructions.map(item => `<li class="flex items-start"><span class="font-bold text-gray-700 mr-2">${instructions.indexOf(item) + 1}.</span><p>${item}</p></li>`).join('');
+            const ingredientsList = ingredients.map(item => `<li class="flex items-start"><span class="text-blue-400 mr-2 text-lg">›</span>${item}</li>`).join('');
+            const instructionsList = instructions.map((item, index) => `<li class="flex items-start"><span class="font-bold text-slate-400 mr-3">${index + 1}.</span><p>${item}</p></li>`).join('');
 
             recipeCard.innerHTML = `
                 <div class="flex justify-between items-start">
-                    <div>
-                        <h2 class="font-brand text-3xl font-bold text-gray-900">${name}</h2>
-                        <p class="mt-2 mb-6 italic text-gray-600">"${description}"</p>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                         <span class="text-xs font-semibold bg-pink-100 text-pink-800 px-2 py-1 rounded-full">🖨️ 3D Ready</span>
-                         <button id="copy-btn" title="Copy to Clipboard" class="p-2 rounded-full hover:bg-gray-200 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                        </button>
-                    </div>
+                    <h2 class="font-brand text-2xl font-bold text-white pr-4">${name}</h2>
+                    <button id="copy-btn" title="Copiar al portapapeles" class="p-2 rounded-full hover:bg-slate-700 transition flex-shrink-0">
+                        <svg class="w-5 h-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                    </button>
                 </div>
+                <p class="mt-2 mb-4 italic text-slate-400 text-sm">"${description}"</p>
                 
-                <div class="grid md:grid-cols-2 gap-8 mt-4">
+                <div class="space-y-6">
                     <div>
-                        <h3 class="text-xl font-bold mb-3 border-b-2 border-indigo-200 pb-2">Ingredients</h3>
-                        <ul class="space-y-2 text-gray-700">${ingredientsList}</ul>
+                        <h3 class="text-lg font-bold mb-2 border-b border-slate-700 pb-1 text-yellow-400">Ingredientes</h3>
+                        <ul class="space-y-1 text-slate-300">${ingredientsList}</ul>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-3 border-b-2 border-purple-200 pb-2">Instructions</h3>
-                        <ol class="space-y-3 text-gray-700">${instructionsList}</ol>
+                        <h3 class="text-lg font-bold mb-2 border-b border-slate-700 pb-1 text-yellow-400">Instrucciones</h3>
+                        <ol class="space-y-2 text-slate-300">${instructionsList}</ol>
                     </div>
                 </div>
             `;
             
-            // --- Hide loader and show card ---
             loader.classList.add('hidden');
+            loader.classList.remove('flex');
             recipeCard.classList.remove('hidden');
 
-            // --- Add event listener for the new copy button ---
             document.getElementById('copy-btn').addEventListener('click', () => {
-                const recipeText = `
-DreamChef Recipe: ${name}
-
-"${description}"
-
-Ingredients:
-${ingredients.join('\n')}
-
-Instructions:
-${instructions.map((step, i) => `${i + 1}. ${step}`).join('\n')}
-                `.trim();
-                
+                const recipeText = `Receta de DreamChef: ${name}\n\n"${description}"\n\nIngredientes:\n${ingredients.join('\n')}\n\nInstrucciones:\n${instructions.map((step, i) => `${i + 1}. ${step}`).join('\n')}`.trim();
                 copyToClipboard(recipeText);
             });
         }
         
-        /**
-         * Copies text to the user's clipboard and shows a confirmation message.
-         * @param {string} text - The text to copy.
-         */
         function copyToClipboard(text) {
             const textarea = document.createElement('textarea');
             textarea.value = text;
             document.body.appendChild(textarea);
             textarea.select();
-            // Using document.execCommand as navigator.clipboard can be restricted in iframes
             try {
                 document.execCommand('copy');
                 showClipboardMessage();
             } catch (err) {
-                console.error('Failed to copy text: ', err);
-                showError('Could not copy recipe.');
+                console.error('Fallo al copiar texto: ', err);
+                showError('No se pudo copiar la receta.');
             }
             document.body.removeChild(textarea);
         }
 
-        /**
-         * Displays and then fades out the "Copied" message.
-         */
         function showClipboardMessage() {
             clipboardMessage.classList.remove('opacity-0');
             setTimeout(() => {
@@ -399,25 +408,16 @@ ${instructions.map((step, i) => `${i + 1}. ${step}`).join('\n')}
             }, 2000);
         }
 
-        /**
-         * Shows an error message to the user.
-         * @param {string} message - The error message to display.
-         */
         function showError(message) {
             errorMessage.textContent = message;
             errorMessage.classList.remove('hidden');
         }
 
-        /**
-         * Hides the error message.
-         */
         function hideError() {
             errorMessage.classList.add('hidden');
         }
 
-        // --- Initial call to set label style ---
         updateFantasyLabel();
-
     </script>
 </body>
 </html>
